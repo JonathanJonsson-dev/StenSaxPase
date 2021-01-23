@@ -55,10 +55,6 @@ namespace StenSaxPåse
             {
                 playerScore += 1;
             }
-            else
-            {
-                lblResultat.Content = "Vinnare kunde ej avgöras";
-            }
             
             lblValDator.Content = $"Datorn valde {computer.Choice}";
             lblResultat.Content = $"Datorn har {computerScore} poäng och du har {playerScore} poäng";
