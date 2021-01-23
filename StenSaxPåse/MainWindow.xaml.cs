@@ -25,19 +25,43 @@ namespace StenSaxPåse
             InitializeComponent();
         }
 
-        private void btnSten_Click(object sender, RoutedEventArgs e)
+        GameEngine gameEngine = new GameEngine();
+        int computerScore = 0;
+        int playerScore = 0;
+
+        private void btnSpela_Click(object sender, RoutedEventArgs e)
         {
+            Computer computer = new Computer();
+            Player player = new Player();
+            
+            if (radioBtnPase.IsChecked == true)
+            {
+                player.Choice = "Påse";
+            }
+            if (radioBtnSax.IsChecked == true)
+            {
+                player.Choice = "Sax";
+            }
+            if (radioBtnSten.IsChecked == true)
+            {
+                player.Choice = "Sten";
+            }
 
-        }
-
-        private void btnSax_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnPase_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (gameEngine.SelectWinner(player, computer) == "Dator")
+            {
+                computerScore += 1;
+            }
+            else if (gameEngine.SelectWinner(player, computer) == "Spelare")
+            {
+                playerScore += 1;
+            }
+            else
+            {
+                lblResultat.Content = "Vinnare kunde ej avgöras";
+            }
+            
+            lblValDator.Content = $"Datorn valde {computer.Choice}";
+            lblResultat.Content = $"Datorn har {computerScore} poäng och du har {playerScore} poäng";
         }
     }
 }
